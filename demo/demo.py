@@ -7,6 +7,7 @@ import os
 
 # fmt: off
 import sys
+
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 # fmt: on
 
@@ -25,7 +26,6 @@ from detectron2.utils.logger import setup_logger
 
 from maskdino import add_maskdino_config
 from predictor import VisualizationDemo
-
 
 # constants
 WINDOW_NAME = "mask2former demo"
@@ -56,12 +56,12 @@ def get_parser():
         "--input",
         nargs="+",
         help="A list of space separated input images; "
-        "or a single glob pattern such as 'directory/*.jpg'",
+             "or a single glob pattern such as 'directory/*.jpg'",
     )
     parser.add_argument(
         "--output",
         help="A file or directory to save output visualizations. "
-        "If not given, will show output in an OpenCV window.",
+             "If not given, will show output in an OpenCV window.",
     )
 
     parser.add_argument(
@@ -99,6 +99,12 @@ def test_opencv_video_format(codec, file_ext):
 if __name__ == "__main__":
     mp.set_start_method("spawn", force=True)
     args = get_parser().parse_args()
+    # args.input = ["/home/exx/Downloads/test.png"]
+    # args.output = "/home/exx/Downloads/output.png"
+    # args.config_file = "/tmp/pycharm_project_681/configs/ade20k/semantic-segmentation/maskdino_R50_bs16_160k_steplr.yaml"
+    # args.opts = ["MODEL.WEIGHTS",
+    #              "/home/exx/Downloads/maskdino_r50_50ep_100q_celoss_hid1024_3s_semantic_ade20k_48.7miou.pth"]
+
     setup_logger(name="fvcore")
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
